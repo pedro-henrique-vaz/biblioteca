@@ -1,5 +1,4 @@
-export default DadosBiblioteca
-class DadosBiblioteca {
+export class DadosBiblioteca {
     constructor() {
         this.livros = []
     }
@@ -11,9 +10,9 @@ class DadosBiblioteca {
             console.log(`${livro.titulo} - ${livro.autor}`)
         })
     }
-    ListagemDosLivrosPorTituloOuAutor() {
+    ListagemDosLivrosPorTituloOuAutor(termo) {
         this.livros.forEach(livro => {
-            if (livro.titulo.toUpperCase().includes(termo.ToUpperCase()) || livro.autor.toUpperCase().includes(termo.ToUpperCase)){ // titulos e autores em maiusculo, includes retornando a false ou true caso o termo diga que esta tudo correto
+            if (livro.titulo.toUpperCase().includes(termo.toUpperCase()) || livro.autor.toUpperCase().includes(termo.toUpperCase())){ // titulos e autores em maiusculo, includes retornando a false ou true caso o termo diga que esta tudo correto
                 console.log(`${livro.titulo} - ${livro.autor}`)
             }
         })
@@ -21,7 +20,7 @@ class DadosBiblioteca {
     EmprestimoDosLivros(titulo, datadadevolucao) {
         const livro = this.livros.find(livro => livro.titulo.toLowerCase() || titulo.toLowerCase()) // faz a procura do livro com o find (localizando o livro e retornando no script)
         if (livro) { // usei para fazer a procura do titulo do livro na biblioteca (true)
-            livro.emprestar(datadadevolucao)
+            livro.Emprestimo(datadadevolucao)
             console.log(` O livro ${livro.titulo} foi alugado e tem como data de devolução ${datadadevolucao}. Caso não for entregue no dia correspondente, será cobrado uma taxa de R$2,00 por dia.`)
         } else { // usei para fazer a procura do titulo do livro na biblioteca (false)
             console.log(`O livro ${titulo} não foi encontrado em nosso bando de dados.`)

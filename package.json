@@ -1,0 +1,20 @@
+{
+  "name": "biblioteca",
+  "version": "1.0.0",
+  "description": "* cadastra livros  * listar todos os livros * listar livros por titulo ou autor * emprestar livros ate uma data  * cobrar 2 reais por dia caso a pessoa n de o livro na data",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedro-henrique-vaz/biblioteca.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedro-henrique-vaz/biblioteca/issues"
+  },
+  "homepage": "https://github.com/pedro-henrique-vaz/biblioteca#readme"
+}

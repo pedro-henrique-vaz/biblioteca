@@ -1,5 +1,5 @@
-import Livros from "./livros"
-import DadosBiblioteca from "./biblioteca"
+import {Livros} from "./livros.mjs"
+import {DadosBiblioteca} from "./biblioteca.mjs"
 
 const Biblioteca_do_pedro = new DadosBiblioteca()
 
@@ -14,7 +14,7 @@ Biblioteca_do_pedro.CadastramentoDosLivros(Livro3)
 Biblioteca_do_pedro.CadastramentoDosLivros(Livro4)
 
 console.log ('Lista de livros Dispóniveis:')
-Biblioteca_do_pedro.ListagemDosLivrosPorTituloOuAutor()
+Biblioteca_do_pedro.ListagemDosLivrosPorTituloOuAutor('Romeu e Julieta')
 
 const DataDevolucao = new Date('15-04-2023')
 Biblioteca_do_pedro.EmprestimoDosLivros('Dom Casmurro', DataDevolucao)

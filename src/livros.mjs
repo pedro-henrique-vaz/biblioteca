@@ -1,5 +1,4 @@
-export default Livros
-class Livros {
+export class Livros {
     constructor(titulo, autor) {
         this.titulo = titulo;
         this.autor = autor;
