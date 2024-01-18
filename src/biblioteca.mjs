@@ -24,10 +24,9 @@ export class Library {
     }
 
     lendBook(title, returnDate) {
-        const book = this.books.find(book => book.title.toLowerCase() === title.toLowerCase())
+        const book = this.books.find(book => book.title.toLowerCase() === title.toLowerCase() && !book.isLend())
         if (book) {
             book.lend(returnDate)
-            console.log(` O livro ${book.title} foi alugado e tem como data de devolução ${returnDate}. Caso não for entregue no dia correspondente, será cobrado uma taxa de R$2,00 por dia.`)
         } else {
             console.log(`O livro ${title} não foi encontrado em nosso bando de dados.`)
         }
@@ -35,11 +34,11 @@ export class Library {
 
 
     returnBook(title, returnDate) {
-        const book = this.books.find(book => book.title.toLowerCase() === title.toLowerCase())
+        const book = this.books.find(book => book.title.toLowerCase() === title.toLowerCase() && book.isLend())
         if (book) {
             const fine = book.return(returnDate)
-            console.log(`OPS: Voçẽ ultrapassou a data limite do livro ${book.title} que era respectivamente, ${returnDate} ,e terá que pagar um valor no total de: R$${fine.toFixed(2)}`)
+            console.log(`O livro ${book.title} foi devolvido na data ${returnDate.toDateString()}`)
         } else {
-            console.log(`O livro ${title} foi entregue no dia correto e por isso o mesmo não foi multado.`)
+            console.log(`O livro ${title} não foi encontrado na lista de livros emprestados.`)
         }
     }}
