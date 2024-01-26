@@ -1,0 +1,2 @@
+void
+tipo array
