@@ -2,20 +2,20 @@
 // ==> Exemplo 01 -> Exemplo básico do uso do Type Object
 
 const pessoa = {
-    nome: 'Glaucia',
-    sobrenome: 'Lemos',
-    idade: 35,
-    funcao: 'Cloud Advocate'
+    nome: 'Pedro',
+    sobrenome: 'Henrique',
+    idade: 17,
+    funcao: 'Aprendiz de TypeScript'
 };
 
 console.log(pessoa);
 
 // ==> Exemplo 02 -> object como parâmetros de função (eles podem ser anônimos)
 function onboarding01(funcionario: { nome: string }) {
-    return 'Seja bem-vinda ' + funcionario.nome;
+    return 'Seja bem-vindo ' + funcionario.nome;
 }
 
-console.log(onboarding01({ nome: 'Glaucia Lemos' }));
+console.log(onboarding01({ nome: 'Pedro Henrique' }));
 
 // ==> Exemplo 03 -> object nomeados
 
@@ -26,7 +26,7 @@ interface Pessoa {
 
 function onboarding02(pessoa: Pessoa) {
     return (
-        'Seja bem-vinda ' +
+        'Seja bem-vindo ' +
         pessoa.nome +
         '!' +
         ' Sua função aqui na empresa será ' +
@@ -35,7 +35,7 @@ function onboarding02(pessoa: Pessoa) {
     );
 }
 
-console.log(onboarding02({ nome: 'Glaucia Lemos', funcao: 'Cloud Advocate' }));
+console.log(onboarding02({ nome: 'Pedro Henrique', funcao: 'Aprendiz' }));
 
 // ==> Exemplo 04 -> object como type alias
 
@@ -47,7 +47,7 @@ type Pessoa03 = {
 
 function onboarding03(pessoa: Pessoa03) {
     return (
-        'Seja bem-vinda ' +
+        'Seja bem-vindo ' +
         pessoa.nome +
         '!' +
         ' Sua função aqui na empresa será ' +
@@ -59,7 +59,7 @@ function onboarding03(pessoa: Pessoa03) {
     );
 }
 
-console.log(onboarding03({ nome: 'Glaucia Lemos', funcao: 'Cloud Advocate', linguagem: 'JavaScript/Typescript' }));
+console.log(onboarding03({ nome: 'Pedro Henrique', funcao: 'Aprendiz', linguagem: 'JavaScript/Typescript' }));
 
 
 // ==> Exemplo 05 -> usando optional no object
@@ -73,7 +73,7 @@ interface Pessoa04 {
 
 function onboarding04(pessoa: Pessoa04) {
     return (
-        'Seja bem-vinda ' +
+        'Seja bem-vindo ' +
         pessoa.nome +
         '!' +
         ' Sua função aqui na empresa será ' +
@@ -85,7 +85,7 @@ function onboarding04(pessoa: Pessoa04) {
     );
 }
 
-console.log(onboarding04({ nome: 'Glaucia Lemos', funcao: 'Cloud Advocate', linguagem: 'JavaScript/Typescript' }));
+console.log(onboarding04({ nome: 'Pedro Henrique', funcao: 'Aprendiz', linguagem: 'JavaScript/Typescript' }));
 
 // ==> Exemplo 06 -> Propriedade 'readonly' (se deseja proibir que os devs não modifiquem um determinado objeto use o '
 //readonly)
@@ -99,7 +99,7 @@ interface Pessoa05 {
 
 function onboarding05(pessoa: Pessoa05) {
     return (
-        'Seja bem-vinda ' +
+        'Seja bem-vindo ' +
         pessoa.nome +
         '!' +
         ' Sua função aqui na empresa será ' +
@@ -115,10 +115,10 @@ function onboarding05(pessoa: Pessoa05) {
 
 console.log(onboarding05(
     {
-        nome: 'Glaucia Lemos',
-        funcao: 'Cloud Advocate',
+        nome: 'Pedro Henrique',
+        funcao: 'Aprendiz de TypeScript',
         linguagem: 'JavaScript/Typescript',
-        email: 'gllemos@microsoft.com'
+        email: 'ph.cesf123@gmail.com'
     }
 ));
 
@@ -131,17 +131,17 @@ interface Pai {
     sobrenome: string;
 }
 
-interface Filha extends Mae, Pai {
+interface Filho extends Mae, Pai {
     idade: number;
 }
 
-const filha: Filha = {
-    nome: 'Glaucia',
-    sobrenome: 'Lemos',
-    idade: 35
+const filho: Filho = {
+    nome: 'Ṕedro',
+    sobrenome: 'Vaz',
+    idade: 17
 }
 
-console.log(filha);
+console.log(filho);
 
 // ==> Exemplo 08 -> Tipos de Interseções
 
@@ -169,17 +169,17 @@ type Admin = {
 }
 
 const usuario: Usuario = {
-    nome: 'Glaucia Lemos',
-    email: 'algumacoisa@gmail.com'
+    nome: 'Pedro Henrique',
+    email: '12345@gmail.com'
 }
 
 const admin: Admin = {
-    nome: 'Glaucia Lemos',
-    email: 'algumacoisa@gmail.com',
+    nome: 'Pedro Henrique',
+    email: '12345@gmail.com',
     admin: true
 }
 
-function acessarSistema<T>(usuario: T): T {
+function acessarSistema<T>(usuario: T): T {    // T aceita tanto tipo admin quanto tipo usuario
     return usuario;
 }
 

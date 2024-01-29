@@ -1,9 +1,11 @@
 // ==> Exemplo 01 - Uso simples de Tuplas em TypeScript
 
-let pessoa: [string, string, number] = ['Pedro Vaz', 'Estudante', 17]; // pessoa = [17, 'Estudante', 'Pedro Vaz']
+// let pessoa: [string, string, number] = ['Pedro Vaz', 'Estudante', 17]; // pessoa = [17, 'Estudante', 'Pedro Vaz']
 console.log(pessoa)
 
 // ==> Exemplo 02 - Acessando o valor da Tupla
+
+let doisTipos: string | undefined;
 
 let pessoa1: [string, string, number]
 pessoa1 = ['Pedro Vaz', 'Estudante', 17]
