@@ -147,10 +147,12 @@ console.log(filho);
 
 interface Cachorro {
     tipo: string;
+    nome: string;
 }
 
 interface Gato {
     tipo: string;
+    idade: number;
 }
 
 type Animal = Cachorro & Gato;
