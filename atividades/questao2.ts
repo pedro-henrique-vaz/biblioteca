@@ -1,19 +1,18 @@
-import * as readline from 'readline';
+import {questionStr} from "./utils";
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+async function main() {
+    let nome: string = await questionStr('Olá, digite seu nome na linha a seguir:')
 
-rl.question('Qual é o seu nome? ', (nome) => {
-    console.log(`Olá, ${nome}, seja bem-vindo!`);
+    console.log(`Olá,${nome}, como vocẽ está?`)
 
-    rl.question('Qual sua idade? ', (idade) => {
-        console.log(`Olá, voce tem ${idade} anos!`);
-        rl.close();
-    });
-});
+    let bem: string = await questionStr('Como vocẽ está se sentindo hoje?')
+    bem = bem.trim()
 
+    if(bem === 'Estou Bem' || bem === 'estou bem') {
+        console.log(`Que bom que voçé está se sentindo bem!!`)
+    } else {
+        console.log('Puxa vida! Oque eu posso fazer para voçẽ se sentir melhor?')
+    }
+}
 
-
-
+main();
