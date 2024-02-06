@@ -1,32 +1,43 @@
 import {questionNumber} from "./utils";
 
 async function main() {
-    console.log('Vamos calcular o seu INSS e o seu Imposto de Renda')
-    let carteira: number = await questionNumber('Quanto vocẽ recebe atualmente? ')
-    let soma0:number = carteira * 0.075
-    let soma1:number = carteira * 0.09
-    let soma2:number = carteira * 0.12
-    let soma3:number = carteira * 0.14
-    let somaNova0:number = carteira - soma0
-    let somaNova1:number = carteira - soma1
-    let somaNova2:number = carteira - soma2
-    let somaNova3:number = carteira - soma3
-    let somaNova4:number = carteira - 908
-    if (carteira <= 1212) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${soma0.toFixed(2)}`)
-        console.log(`O valor do seu salario liquido e de: R$ ${somaNova0}`)
-    } else if (carteira > 1212 && carteira < 2427) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${soma1.toFixed(2)}`)
-        console.log(`O valor do seu salario liquido e de: R$ ${somaNova1}`)
-    } else if (carteira > 2428 && carteira < 3641) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${soma2.toFixed(2)}`)
-        console.log(`O valor do seu salario liquido e de: R$ ${somaNova2}`)
-    } else if (carteira > 3642 && carteira < 7087) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${soma3.toFixed(2)}`)
-        console.log(`O valor do seu salario liquido e de: R$ ${somaNova3}`)
-    } else if (carteira >= 7088) {
+    console.log('Vamos calcular o seu INSS?')
+    let salarioBruto: number = await questionNumber('Qual é o seu salário bruto? ')
+    // let inss1:number = salarioBruto * 0.075 ;
+    // let inss2:number = salarioBruto * 0.09 - 21.18 ;
+    // let inss3:number = salarioBruto * 0.12 - 101.18 ;
+    // let inss4:number = salarioBruto * 0.14 - 181.18
+    // // let inss2:number = salarioBruto * 0.09 - 19.80 ;
+    // // let inss3:number = salarioBruto * 0.12 - 96.94 ;
+    // // let inss4:number = salarioBruto * 0.14 - 174.08;
+    // let salarioMenosInss1:number = salarioBruto - inss1 ;
+    // let salarioMenosInss2:number = salarioBruto - inss2 ;
+    // let salarioMenosInss3:number = salarioBruto - inss3 ;
+    // let salarioMenosInss4:number = salarioBruto - inss4 ;
+    // let salarioMenosInss5:number = salarioBruto - 908
+
+    let inss1:number =
+
+
+
+
+
+
+    if (salarioBruto <= 1412) {
+        console.log(`O valor do seu inss é equivalente a: R$ ${inss1.toFixed(2)}.`)
+        console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss1.toFixed(2)}`)
+    } else if (salarioBruto > 1412.01 && salarioBruto < 2666.68) {
+        console.log(`O valor do seu inss é equivalente a: R$ ${inss2.toFixed(2)}`)
+        console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss2.toFixed(2)}`)
+    } else if (salarioBruto > 2666.69 && salarioBruto < 4000.03) {
+        console.log(`O valor do seu inss é equivalente a: R$ ${inss3.toFixed(2)}`)
+        console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss3.toFixed(2)}`)
+    } else if (salarioBruto > 4000.04 && salarioBruto < 7786.02) {
+        console.log(`O valor do seu inss é equivalente a: R$ ${inss4.toFixed(2)}`)
+        console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss4.toFixed(2)}`)
+    } else if (salarioBruto >= 7786.03) {
         console.log(`O valor do seu inss é equivalente a: R$ 908`)
-        console.log(`O valor do seu salario liquido e de: R$ ${somaNova4}`)
+        console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss5}`)
     }
 }
 main()
