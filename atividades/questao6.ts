@@ -3,39 +3,43 @@ import {questionNumber} from "./utils";
 async function main() {
     console.log('Vamos calcular o seu INSS?')
     let salarioBruto: number = await questionNumber('Qual é o seu salário bruto? ')
-    // let inss1:number = salarioBruto * 0.075 ;
-    // let inss2:number = salarioBruto * 0.09 - 21.18 ;
-    // let inss3:number = salarioBruto * 0.12 - 101.18 ;
-    // let inss4:number = salarioBruto * 0.14 - 181.18
-    // // let inss2:number = salarioBruto * 0.09 - 19.80 ;
-    // // let inss3:number = salarioBruto * 0.12 - 96.94 ;
-    // // let inss4:number = salarioBruto * 0.14 - 174.08;
-    // let salarioMenosInss1:number = salarioBruto - inss1 ;
-    // let salarioMenosInss2:number = salarioBruto - inss2 ;
-    // let salarioMenosInss3:number = salarioBruto - inss3 ;
-    // let salarioMenosInss4:number = salarioBruto - inss4 ;
-    // let salarioMenosInss5:number = salarioBruto - 908
+    const al1:number = 0.075
+    const al2:number = 0.9
+    const al3:number = 0.12
+    const al4:number = 0.14
+    const sc0:number = 1319.00
+    const sc1:number = 1320.00
+    const sc2:number = 2571.29
+    const sc3:number = 3856.94
+    const sc4:number = 7507.49
 
-    let inss1:number =
-
-
-
-
-
-
-    if (salarioBruto <= 1412) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${inss1.toFixed(2)}.`)
+    if (salarioBruto <= sc0) {
+        let soma0:number = sc1 * al1 + salarioBruto * al2 - sc1 * al2
+        const salarioMenosInss1:number = salarioBruto - soma0
+        console.log(`O valor do seu inss é equivalente a: R$ ${soma0.toFixed(2)}.`)
         console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss1.toFixed(2)}`)
-    } else if (salarioBruto > 1412.01 && salarioBruto < 2666.68) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${inss2.toFixed(2)}`)
+
+    } else if (salarioBruto <= sc1) {
+        let soma1:number = sc1 * al1 + sc2 * al2 - sc1 * al2 + salarioBruto * al3 - sc2 * al3
+        const salarioMenosInss2:number = salarioBruto - soma1
+        console.log(`O valor do seu inss é equivalente a: R$ ${soma1.toFixed(2)}`)
         console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss2.toFixed(2)}`)
-    } else if (salarioBruto > 2666.69 && salarioBruto < 4000.03) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${inss3.toFixed(2)}`)
+
+    } else if (salarioBruto <= sc2) {
+        let soma3:number = sc1 * al1 + sc2 * al2 - sc1 * al2 + sc3 * al3 - sc2 * al3 + salarioBruto * al4 - sc3 * al4
+        const salarioMenosInss3:number = salarioBruto - soma3
+        console.log(`O valor do seu inss é equivalente a: R$ ${soma3.toFixed(2)}`)
         console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss3.toFixed(2)}`)
-    } else if (salarioBruto > 4000.04 && salarioBruto < 7786.02) {
-        console.log(`O valor do seu inss é equivalente a: R$ ${inss4.toFixed(2)}`)
+
+    } else if (salarioBruto <= sc3) {
+        let soma4:number = sc1 * al1 + sc2 * al2 - sc1 * al2 + sc3 * al3 - sc2 * al3 + sc4 * al4 - salarioBruto * al4
+        const salarioMenosInss4:number = salarioBruto - soma4
+        console.log(`O valor do seu inss é equivalente a: R$ ${soma4.toFixed(2)}`)
         console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss4.toFixed(2)}`)
-    } else if (salarioBruto >= 7786.03) {
+
+    } else if (salarioBruto > sc4) {
+        const soma5:number = 908
+        const salarioMenosInss5:number = salarioBruto - soma5
         console.log(`O valor do seu inss é equivalente a: R$ 908`)
         console.log(`O valor do seu salario liquido e de: R$ ${salarioMenosInss5}`)
     }
