@@ -1,38 +1,73 @@
 import {questionNumber} from "./utils";
 
 async function main() {
-    console.log('Vamos calcular o seu INSS?')
+    console.log('Vamos calcular o seu INSS e seu IRRF?')
 
     let salarioBruto: number = await questionNumber('Qual é o seu salário bruto? ')
+    let dependentes: number = await questionNumber ('Quantos dependentes vocẽ tem? ')
 
-    const inss:number = calcularInss(salarioBruto);
-    const salarioMenosInss: number = salarioBruto - inss;
+    var inss: number = calcularInss(salarioBruto)
+    var irrf: number = calcularIRRF(salarioBruto, inss, dependentes)
+
+    var salarioLiquido:number = salarioBruto - irrf - inss
+    var somaDeImposto:number = inss + irrf
 
     console.log(`O valor do seu INSS é equivalente a: R$ ${inss.toFixed(2)}`)
-    console.log(`O valor do seu salário líquido é de: R$ ${salarioMenosInss.toFixed(2)}`)
+    console.log(`O valor do seu IRRF é equivalente a: R$ ${irrf.toFixed(2)}`)
+    console.log(`O valor do seu salário líquido após as operações é de: R$ ${salarioLiquido.toFixed(2)}`)
+    console.log(`O valor total de imposto pago é de: R$ ${somaDeImposto.toFixed(2)}`)
 }
 
 function calcularInss(salarioBruto: number): number {
-    const al1: number = 0.075
-    const al2: number = 0.09
-    const al3: number = 0.12
-    const al4: number = 0.14
-    const sc1: number = 1320.00
-    const sc2: number = 2571.29
-    const sc3: number = 3856.94
-    const sc4: number = 7507.49
+    const aliquotaINSS1: number = 0.075
+    const aliquotaINSS2: number = 0.09
+    const aliquotaINSS3: number = 0.12
+    const aliquotaINSS4: number = 0.14
+    const contribuicaoINSS1: number = 1320.00
+    const contribuicaoINSS2: number = 2571.29
+    const contribuicaoINSS3: number = 3856.94
+    const contribuicaoINSS4: number = 7507.49
 
-    if (salarioBruto <= sc1) {
-        return salarioBruto * al1
-    } else if (salarioBruto <= sc2) {
-        return (sc1 * al1) + (salarioBruto * al2) - (sc1 * al2)
-    } else if (salarioBruto <= sc3) {
-        return sc1 * al1 + sc2 * al2 - sc1 * al2 + salarioBruto * al3 - sc2 * al3
-    } else if (salarioBruto <= sc4) {
-        return (sc1 * al1) + (sc2 * al2) - (sc1 * al2) + (sc3 * al3) - (sc2 * al3) + (salarioBruto * al4) - (sc3 * al4)
+    if (salarioBruto <= contribuicaoINSS1) {
+        return salarioBruto * aliquotaINSS1
+    } else if (salarioBruto <= contribuicaoINSS2) {
+        return (contribuicaoINSS1 * aliquotaINSS1) + (salarioBruto * aliquotaINSS2) - (contribuicaoINSS1 * aliquotaINSS2)
+    } else if (salarioBruto <= contribuicaoINSS3) {
+        return contribuicaoINSS1 * aliquotaINSS1 + contribuicaoINSS2 * aliquotaINSS2 - contribuicaoINSS1 * aliquotaINSS2 + salarioBruto * aliquotaINSS3 - contribuicaoINSS2 * aliquotaINSS3
+    } else if (salarioBruto <= contribuicaoINSS4) {
+        return (contribuicaoINSS1 * aliquotaINSS1) + (contribuicaoINSS2 * aliquotaINSS2) - (contribuicaoINSS1 * aliquotaINSS2) + (contribuicaoINSS3 * aliquotaINSS3) - (contribuicaoINSS2 * aliquotaINSS3) + (salarioBruto * aliquotaINSS4) - (contribuicaoINSS3 * aliquotaINSS4)
     } else {
-        return (sc1 * al1) + (sc2 * al2) - (sc1 * al2) + (sc3 * al3) - (sc2 * al3) + (sc4 * al4) - (sc3 * al4)
+        return (contribuicaoINSS1 * aliquotaINSS1) + (contribuicaoINSS2 * aliquotaINSS2) - (contribuicaoINSS1 * aliquotaINSS2) + (contribuicaoINSS3 * aliquotaINSS3) - (contribuicaoINSS2 * aliquotaINSS3) + (contribuicaoINSS4 * aliquotaINSS4) - (contribuicaoINSS3 * aliquotaINSS4)
     }
 }
 
+function calcularIRRF(salarioBruto: number, inss: number, dependentes: number): number {
+    const aliquotaIRRF1: number = 0
+    const aliquotaIRRF2: number = 0.075
+    const aliquotaIRRF3: number = 0.15
+    const aliquotaIRRF4: number = 0.225
+    const aliquotaIRRF5: number = 0.275
+    const contribuicaoIRRF1: number = 2112.00
+    const contribuicaoIRRF2: number = 2826.65
+    const contribuicaoIRRF3: number = 3751.05
+    const contribuicaoIRRF4: number = 4664.68
+    const deducaoIRRF1: number = 0
+    const deducaoIRRF2: number = 158.40
+    const deducaoIRRF3: number = 370.40
+    const deducaoIRRF4: number = 651.73
+    const deducaoIRRF5: number = 884.96
+    const valorPorDependente: number = 189.59 * dependentes
+
+    if (salarioBruto <= contribuicaoIRRF1) {
+        return (salarioBruto - inss - valorPorDependente) * aliquotaIRRF1 - deducaoIRRF1
+    } else if (salarioBruto <= contribuicaoIRRF2) {
+        return (salarioBruto - inss - valorPorDependente) * aliquotaIRRF2 - deducaoIRRF2
+    } else if (salarioBruto <= contribuicaoIRRF3) {
+        return (salarioBruto - inss - valorPorDependente) * aliquotaIRRF3 - deducaoIRRF3
+    } else if (salarioBruto <= contribuicaoIRRF4) {
+        return (salarioBruto - inss - valorPorDependente) * aliquotaIRRF4 - deducaoIRRF4
+    } else {
+        return (salarioBruto - inss - valorPorDependente) * aliquotaIRRF5 - deducaoIRRF5
+    }
+}
 main()
