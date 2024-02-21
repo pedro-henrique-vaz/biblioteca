@@ -1,2 +1,7 @@
-pergunte a idade da pessoa, quantos anos, meses e dias
-converter a idade, mes e dias em dia e imprimir
+usuario vai digitar o montante inicial
+depois dizer o periodo, meses ou ano
+depois e aplicada a porcentagem de acordo com oq o usuario dizer, meses ou ano
+
+imprimir o quanto ele investiu
+imprimir o quanto ele ganhou 
+imprimir o valor final recebido pelo usuario
