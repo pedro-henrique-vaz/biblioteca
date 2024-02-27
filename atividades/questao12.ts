@@ -5,17 +5,16 @@ async function main() {
     let valorDois: number = await questionNumber('Segundo valor: ')
     let valorTres: number = await questionNumber('Terceiro valor: ')
     let ordenando: number = colocandoEmOrdem(valorUm, valorDois, valorTres)
-
 }
 function colocandoEmOrdem (valorUm: number, valorDois: number, valorTres: number): number {
-    if (valorUm < valorDois && valorTres) {
+    if (valorUm < valorDois && valorUm < valorTres) {
         return valorUm
-    } else if (valorDois < valorUm && valorTres) {
+    } else if (valorDois < valorUm && valorDois < valorTres) {
         return valorDois
-    } else if (valorTres < valorUm && valorDois) {
+    } else if (valorTres < valorUm && valorTres < valorDois) {
         return valorTres
     }
-
+    
 }
 main()
 
