@@ -1,1 +1,0 @@
-usuario vai por um nome e senha, se for algum existente, acesso permitido, caso contrario, acesso negado

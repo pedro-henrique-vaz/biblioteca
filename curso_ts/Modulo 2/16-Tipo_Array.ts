@@ -22,6 +22,7 @@ console.log(idiomas)
 let idiomas1: Array<string> = ['Português', 'Inglês', 'Espanhol', 'Francês']
 console.log(idiomas1.length)
 
+
 // ==> Exemplo 05 - Exemplo de Array com Spread Operator
 
 let listaNumeros = [0, 1, 2, 3, 4, 5]
