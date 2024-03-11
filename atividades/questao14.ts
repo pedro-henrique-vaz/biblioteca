@@ -4,7 +4,6 @@ function inversaoDeValores(arr:number[]) {
     let aux: number = arr[0]
     arr[0] = arr[1]
     arr[1] = aux
-
     arr[1] = arr[2]
     arr[2] = aux
 }
