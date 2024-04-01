@@ -1,0 +1,1 @@
+retornar todas as vezes que tiver o numero igual ao que o usuario passou
