@@ -1,1 +1,1 @@
-retornar todas as vezes que tiver o numero igual ao que o usuario passou
+receber um array dentro de uma funcao e retornar outro array com os valores do array primario dobrado
