@@ -1,1 +1,1 @@
-receber um array dentro de uma funcao e retornar outro array com os valores do array primario dobrado
+criar uma funcao que some todos os valores de um array e depois retorne o resultado
