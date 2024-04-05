@@ -1,1 +1,0 @@
-criar uma funcao que some todos os valores de um array e depois retorne o resultado

@@ -1,3 +1,4 @@
+// @ts-ignore
 async function main(){
     let numerosDoArr: number[] = [32, 5, 67, 87, 23, 4, 1, 54, 88, 98,]
     let parametros1 = encontrandoMaiorValor(numerosDoArr)
