@@ -13,10 +13,9 @@ async function main() {
 
 function addingTheValues(primeiroArr: number[], extractFn: (el0: number, somaTotal: number) => number, valorInicial:number): number {
     let somaTotal: number = valorInicial
-    for (let i: number = 0; i < primeiroArr.length; i++) {
-        somaTotal = extractFn(primeiroArr[3], somaTotal)
+    for (let i: number = 1; i < primeiroArr.length; i++) {
+        somaTotal = extractFn(primeiroArr[i], somaTotal)
     }
     return somaTotal
 }
-
 main()
