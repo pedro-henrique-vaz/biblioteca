@@ -5,7 +5,6 @@ interface Livro {
 interface Biblioteca {
     livros: Livro[]
 }
-console.log(soma(number , number))
 async function main(){
     const livro1: Livro = {
         nome: 'Ilíada e Odisséia',
@@ -36,12 +35,7 @@ async function main(){
 function listagemDosLivros(checagem: Biblioteca) {
     console.log("Livros Disponiveis: ")
     checagem.livros.forEach((el: Livro) => {
-        console.log(`Nome: ${el.nome} Autor: ${el.autor}`)
-        console.log(`Nome: ${el["nome"]} Autor: ${el["autor"]}`)
+        console.log(`Nome: ${el.nome}    Autor: ${el.autor}`)
     })
-}
-
-function soma(a: number, b :number): number {
-    return a + b;
 }
 main()
