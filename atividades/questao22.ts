@@ -1,3 +1,4 @@
+import {questionNumber, questionStr} from "./utils"
 interface Livro {
     nome: string
     autor: string
@@ -33,6 +34,10 @@ async function main(){
     // biblioteca.livros = [livro1, livro2, livro3, livro4, livro5]
 
     listagemDosLivros(biblioteca)
+    let emprestimo: string = await questionStr('Voce quer pegar emprestado algum livro? ')
+    let livroEmprestado = emprestarLivro(biblioteca, emprestimo)
+    console.log(livroEmprestado)
+    listagemDosLivros(biblioteca)
 }
 function listagemDosLivros(checagem: Biblioteca) {
     console.log("Livros Disponiveis: ")
@@ -59,5 +64,15 @@ function adicionarLivroNaBiblioteca(biblioteca: Biblioteca, livro: Livro){
         }
     }
     biblioteca.livros.push(livro)
+}
+function emprestarLivro(lista: Biblioteca, emprestimo: string) {
+    for (let i: number = 0; i < lista.livros.length; i++) {
+        let el: Livro = lista.livros[i]
+        if (emprestimo === el.nome) {
+            lista.livros.splice(i, 1)
+            return el
+        }
+    }
+    return undefined
 }
 main()
