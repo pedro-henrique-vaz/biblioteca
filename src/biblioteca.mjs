@@ -28,7 +28,7 @@ export class Library {
         if (book) {
             book.lend(returnDate)
         } else {
-            console.log(`O livro ${title} não foi encontrado em nosso bando de dados.`)
+            console.log(`O livro ${title} não foi encontrado em nosso banco de dados.`)
         }
     }
 
