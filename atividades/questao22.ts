@@ -5,6 +5,12 @@ interface Livro {
 interface Biblioteca {
     livros: Livro[]
 }
+
+interface Emprestimo {
+    livro: Livro
+    dataContrato: Date
+}
+
 async function main(){
     let biblioteca1 = criarBiblioteca()
     let livro1: Livro = criarLivro('Ilíada e Odisséisa', 'Homero')
@@ -25,8 +31,10 @@ async function main(){
     adicionarLivroNaBiblioteca(biblioteca1, livro7)
     adicionarLivroNaBiblioteca(biblioteca1, livro8)
 
-    let livroEmprestado1 = emprestarLivro(biblioteca1, 'Ilíada e Odisséisa', 5)
-    let livroEmprestado2 = emprestarLivro(biblioteca1, 'Lord of the Rings', 2)
+    let livroEmprestado1 = emprestarLivro(biblioteca1, 'Ilíada e Odisséisa')
+    let livroEmprestado2 = emprestarLivro(biblioteca1, 'Lord of the Rings')
+    readicionandoLivro(biblioteca1, livroEmprestado1)
+    readicionandoLivro(biblioteca1, livroEmprestado2)
     listagemDosLivros(biblioteca1)
 }
 function criarLivro(nome: string, autor: string): Livro {
@@ -55,18 +63,22 @@ function listagemDosLivros(checagem: Biblioteca) {
         console.log(`Nome - ${el.nome};  Autor - ${el.autor}`)
     })
 }
-function emprestarLivro(lista: Biblioteca, emprestimo: string, diasEmprestado: number) {
+function emprestarLivro(lista: Biblioteca, nomeLivro: string): Emprestimo {
     for (let i: number = 0; i < lista.livros.length; i++) {
         let el: Livro = lista.livros[i]
-        if (emprestimo === el.nome) {
+        if (nomeLivro === el.nome) {
             lista.livros.splice(i, 1)
-            return el
+            let data = new Date()
+            data.setDate(data.getDate()+7)
+            return {
+                livro: el,
+                dataContrato: data,
+            }
         }
     }
     return undefined
 }
 function readicionandoLivro (emprestar: Biblioteca, livro: Livro){
     emprestar.livros.push(livro)
-
 }
 main()
