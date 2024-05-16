@@ -18,5 +18,10 @@
   "homepage": "https://github.com/pedro-henrique-vaz/biblioteca#readme",
   "dependencies": {
     "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2"
   }
 }
