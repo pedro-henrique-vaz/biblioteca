@@ -1,4 +1,8 @@
-class Biblioteca {
+import {Livro} from "./livro";
+import {Emprestimo} from "./emprestimo";
+import {Recibo} from "./recibo";
+
+export class Biblioteca {
     livros: Livro[]
 
     constructor() {

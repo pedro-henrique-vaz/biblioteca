@@ -1,4 +1,6 @@
-class Emprestimo {
+import {Livro} from "./livro";
+
+export class Emprestimo {
     livro: Livro
     dataContrato: Date
     constructor(livro: Livro, dataContrato: Date) {

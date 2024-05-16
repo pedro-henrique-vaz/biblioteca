@@ -1,4 +1,4 @@
-class Livro {
+export class Livro {
     nome: string
     autor: string
     constructor(nome: string, autor: string) {

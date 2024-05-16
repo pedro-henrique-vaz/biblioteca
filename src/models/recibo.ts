@@ -1,4 +1,4 @@
-class Recibo {
+export class Recibo {
     multa: number
     dataDevolucao: Date
 
