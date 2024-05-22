@@ -72,16 +72,52 @@ describe('test biblioteca', () => {
         })
 
         it('nao deve pegar um livro emprestado se a biblioteca for vazia', () => {
+            const biblioteca = new Biblioteca() // const biblioteca = new Biblioteca(0)
+            const livro = new Livro('nomeA','autorA')
+            const dataEmprestimo = new Date()
 
+            const emprestimo = biblioteca.emprestarLivro(livro.nome, dataEmprestimo)
+            
+            expect(biblioteca.livros).toThrow("A biblioteca esta vazia")
         });
 
         it('nao deve pegar um livro emprestado se o livro nao existir', () => {
+            const biblioteca = new Biblioteca() // duvida
+            const livro = new Livro('nomeA','autorA')
+            const dataEmprestimo = new Date()
 
+            const emprestimo = biblioteca.emprestarLivro(livro.nome, dataEmprestimo)
+            
+            expect(biblioteca.livros).toThrow("O livro nao existe")
         });
     })
 
     describe('test devolver Livro', () => {
         it('devolvendo livro antes da data do contrato', () => {
+            const biblioteca = new Biblioteca()
+            const livro1 = new Livro('nomeA', 'autorA')
+            const dataContrato = new Date('2024-05-10')
+            const dataDevolucao = new Date('2024-05-8')
+            const emprestimo = new Emprestimo(livro1, dataContrato)
+
+            const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
+
+            expect(recibo.multa).toBe(0)
+            expect(recibo.dataDevolucao).toContain(dataDevolucao)
+        })
+        it('devolvendo livro na data contrato', () => {
+            const biblioteca = new Biblioteca()
+            const livro1 = new Livro('nomeA', 'autorA')
+            const dataContrato = new Date('2024-05-10')
+            const dataDevolucao = new Date('2024-05-10')
+            const emprestimo = new Emprestimo(livro1, dataContrato)
+
+            const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
+
+            expect(recibo.multa).toBe(0)
+            expect(recibo.dataDevolucao).toContain(dataDevolucao)
+        });
+        it('devolvendo livro depois da data contrato', () => {
             const biblioteca = new Biblioteca()
             const livro1 = new Livro('nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10')
@@ -92,12 +128,6 @@ describe('test biblioteca', () => {
 
             expect(recibo.multa).toBe(40)
             expect(recibo.dataDevolucao).toContain(dataDevolucao)
-        })
-        it('devolvendo livro na data contrato', () => {
-
-        });
-        it('devolvendo livro depois da data contrato', () => {
-
         });
     })
 })
