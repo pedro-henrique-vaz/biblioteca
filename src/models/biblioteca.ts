@@ -24,13 +24,6 @@ export class Biblioteca {
         })
     }
     emprestarLivro(nomeLivro: string, dataEmprestimo: Date): Emprestimo {
-        if (this.livros.length === 0) {
-            throw new Error('A biblioteca esta vazia')
-        }
-        const livroInexistente = this.livros.findIndex(el => el.nome === nomeLivro);
-        if (livroInexistente === -1) {
-            throw new Error('O livro não existe')
-        }
         for (let i: number = 0; i < this.livros.length; i++) {
             let el: Livro = this.livros[i]
             if (nomeLivro === el.nome) {

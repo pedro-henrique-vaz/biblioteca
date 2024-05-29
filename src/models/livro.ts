@@ -2,7 +2,7 @@ export class Livro {
     nome: string
     autor: string
     constructor(nome: string, autor: string) {
-        if(nome.length === 0){
+        if (nome.length === 0){
             throw new Error('Nome do livro nao pode ser vazio')
         }
         if (autor.length === 0){
