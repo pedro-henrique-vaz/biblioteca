@@ -43,6 +43,8 @@ export class Biblioteca {
         if (diferencaDeDias > 0) {
             multa = diferencaDeDias * 2
         }
-        return new Recibo(multa, dataDevolucao)
+        const recibo = new Recibo(multa, dataDevolucao)
+        emprestimo.recibo = recibo
+        return recibo
     }
 }
