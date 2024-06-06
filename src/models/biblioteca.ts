@@ -1,12 +1,16 @@
 import {Livro} from "./livro";
 import {Emprestimo} from "./emprestimo";
 import {Recibo} from "./recibo";
+import {geradorDeID} from "../main";
 
 export class Biblioteca {
     livros: Livro[]
-
-    constructor() {
+    id: number
+    geradorId: ()=>number
+    constructor(id: number, geradorId: () => number) {
         this.livros = []
+        this.id = id
+        this.geradorId = geradorId
     }
     adicionarLivro(livro: Livro){
         for(let i: number = 0; i < this.livros.length; i++) {
@@ -30,7 +34,7 @@ export class Biblioteca {
                 this.livros.splice(i, 1)
                 let dataContrato = new Date(dataEmprestimo.getTime())
                 dataContrato.setDate(dataContrato.getDate()+7)
-                return new Emprestimo(el, dataContrato)
+                return new Emprestimo(this.geradorId(), el, dataContrato)
             }
         }
         return undefined

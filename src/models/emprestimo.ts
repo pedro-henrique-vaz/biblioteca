@@ -5,9 +5,11 @@ export class Emprestimo {
     livro: Livro
     dataContrato: Date
     recibo: Recibo
+    id: number
 
-    constructor(livro: Livro, dataContrato: Date) {
+    constructor(id: number, livro: Livro, dataContrato: Date) {
         this.livro = livro;
         this.dataContrato = dataContrato;
+        this.id = id;
     }
 }

@@ -7,7 +7,7 @@ describe('test biblioteca', () => {
     describe('test contrutor', () => {
         it('Deve construir uma biblioteca', () => {
 
-            const biblioteca = new Biblioteca()
+            const biblioteca = new Biblioteca(1, null)
 
             expect(biblioteca.livros).toHaveLength(0);
         })
@@ -15,8 +15,8 @@ describe('test biblioteca', () => {
 
     describe('test adicionar Livro', () => {
         it('adiciona um livro', () => {
-            const biblioteca = new Biblioteca()
-            const livro = new Livro('NomeA', 'AutorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro = new Livro(undefined, 'NomeA', 'AutorA')
             biblioteca.adicionarLivro(livro)
 
             expect(biblioteca.livros).toHaveLength(1);
@@ -24,8 +24,8 @@ describe('test biblioteca', () => {
         })
 
         it('nao adiciona Livro se existe um livro igual', () => {
-            const biblioteca = new Biblioteca()
-            const livro = new Livro('NomeA', 'AutorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro = new Livro(undefined, 'NomeA', 'AutorA')
             biblioteca.adicionarLivro(livro)
             biblioteca.adicionarLivro(livro)
 
@@ -34,9 +34,9 @@ describe('test biblioteca', () => {
         });
 
         it('nao adiciona Livro se existe um livro igual', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('NomeA', 'AutorA')
-            const livro2 = new Livro('NomeA', 'AutorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'NomeA', 'AutorA')
+            const livro2 = new Livro(undefined, 'NomeA', 'AutorA')
             biblioteca.adicionarLivro(livro1)
             biblioteca.adicionarLivro(livro2)
 
@@ -45,9 +45,9 @@ describe('test biblioteca', () => {
         });
 
         it('nao adiciona Livro se existe um livro igual', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('NomeA', 'AutorA')
-            const livro2 = new Livro('NomeB', 'AutorB')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'NomeA', 'AutorA')
+            const livro2 = new Livro(undefined, 'NomeB', 'AutorB')
             biblioteca.adicionarLivro(livro1)
             biblioteca.adicionarLivro(livro2)
 
@@ -58,9 +58,10 @@ describe('test biblioteca', () => {
     })
 
     describe('test emprestar Livro', () => {
+        const geradorID = () => 1;
         it('pegando um livro emprestado', () => {
-            const biblioteca = new Biblioteca()
-            const livro = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, geradorID)
+            const livro = new Livro(undefined, 'nomeA', 'autorA')
             const dataEmprestimo = new Date()
             biblioteca.adicionarLivro(livro)
 
@@ -72,8 +73,8 @@ describe('test biblioteca', () => {
         })
 
         it('nao deve pegar um livro emprestado se a biblioteca for vazia', () => {
-            const biblioteca = new Biblioteca() // const biblioteca = new Biblioteca(0)
-            const livro = new Livro('nomeA','autorA')
+            const biblioteca = new Biblioteca(1, geradorID) // const biblioteca = new Biblioteca(0)
+            const livro = new Livro(undefined, 'nomeA', 'autorA')
             const dataEmprestimo = new Date()
 
             const emprestimo = biblioteca.emprestarLivro(livro.nome, dataEmprestimo)
@@ -82,9 +83,9 @@ describe('test biblioteca', () => {
         });
 
         it('nao deve pegar um livro emprestado se o livro nao existir', () => {
-            const biblioteca = new Biblioteca() // duvida
-            const livro = new Livro('nomeA','autorA')
-            const livro2 = new Livro('nomeB','autorB')
+            const biblioteca = new Biblioteca(1, geradorID) // duvida
+            const livro = new Livro(undefined, 'nomeA', 'autorA')
+            const livro2 = new Livro(undefined, 'nomeB', 'autorB')
             const dataEmprestimo = new Date()
             biblioteca.adicionarLivro(livro)
 
@@ -96,11 +97,11 @@ describe('test biblioteca', () => {
 
     describe('test devolver Livro', () => {
         it('devolvendo livro antes da data do contrato', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10')
             const dataDevolucao = new Date('2024-05-8')
-            const emprestimo = new Emprestimo(livro1, dataContrato)
+            const emprestimo = new Emprestimo(1, livro1, dataContrato)
 
             const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
 
@@ -108,11 +109,11 @@ describe('test biblioteca', () => {
             expect(recibo.dataDevolucao).toBe(dataDevolucao)
         })
         it('devolvendo livro na data contrato - 1 hora antes', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10T15:00:00')
             const dataDevolucao = new Date('2024-05-10T14:00:00')
-            const emprestimo = new Emprestimo(livro1, dataContrato)
+            const emprestimo = new Emprestimo(1, livro1, dataContrato)
 
             const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
 
@@ -120,11 +121,11 @@ describe('test biblioteca', () => {
             expect(recibo.dataDevolucao).toBe(dataDevolucao)
         });
         it('devolvendo livro na data contrato - na mesma hora', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10')
             const dataDevolucao = new Date('2024-05-10')
-            const emprestimo = new Emprestimo(livro1, dataContrato)
+            const emprestimo = new Emprestimo(1, livro1, dataContrato)
 
             const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
 
@@ -132,11 +133,11 @@ describe('test biblioteca', () => {
             expect(recibo.dataDevolucao).toBe(dataDevolucao)
         });
         it('devolvendo livro na data contrato - uma hora depois', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10T15:00:00')
             const dataDevolucao = new Date('2024-05-10T16:00:00')
-            const emprestimo = new Emprestimo(livro1, dataContrato)
+            const emprestimo = new Emprestimo(1, livro1, dataContrato)
 
             const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
 
@@ -144,11 +145,11 @@ describe('test biblioteca', () => {
             expect(recibo.dataDevolucao).toBe(dataDevolucao)
         });
         it('devolvendo livro depois da data contrato', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10')
             const dataDevolucao = new Date('2024-05-30')
-            const emprestimo = new Emprestimo(livro1, dataContrato)
+            const emprestimo = new Emprestimo(1, livro1, dataContrato)
 
             const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
 
@@ -156,11 +157,11 @@ describe('test biblioteca', () => {
             expect(recibo.dataDevolucao).toBe(dataDevolucao)
         });
         it('devolvendo livro antes da data contrato', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10')
             const dataDevolucao = new Date('2024-05-9')
-            const emprestimo = new Emprestimo(livro1, dataContrato)
+            const emprestimo = new Emprestimo(1, livro1, dataContrato)
 
             const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
 
@@ -168,11 +169,11 @@ describe('test biblioteca', () => {
             expect(recibo.dataDevolucao).toBe(dataDevolucao)
         });
         it('devolvendo livro depois da data contrato', () => {
-            const biblioteca = new Biblioteca()
-            const livro1 = new Livro('nomeA', 'autorA')
+            const biblioteca = new Biblioteca(1, null)
+            const livro1 = new Livro(undefined, 'nomeA', 'autorA')
             const dataContrato = new Date('2024-05-10')
             const dataDevolucao = new Date('2024-05-11')
-            const emprestimo = new Emprestimo(livro1, dataContrato)
+            const emprestimo = new Emprestimo(1, livro1, dataContrato)
 
             const recibo = biblioteca.devolverLivro(emprestimo, dataDevolucao)
 
